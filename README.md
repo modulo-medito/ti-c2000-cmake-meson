@@ -14,7 +14,7 @@ Key features listed below:
 Just import it as a CCS project and build the `Debug` option.
 
 ### Build with CMake
-1. Set the toolchain path of in the `\platform\<toolchain>\build.bat`
+1. Set the toolchain path of in the `\platform\<toolchain>\build_cmake.bat`
 2. Click `build.bat` in the project root folder
 
 ## Folder Structure
@@ -22,31 +22,31 @@ See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Struc
 
 ```
 .
-├── .git                    # git repository
-├── .gitignore              # git ignored files configuration
-├── .clang-format           # C language formatter cofiguration
-├── build                   # Compiled files (alternatively `dist`)
-├── docs                    # Documentation files (alternatively `doc`)
-├── platform                # Hardware related
-│   └── xxx_mcu             # MCU hardware
-│       ├── script          # Device assistance scripts
-│       ├── src             # MCU hardware related source
-│       ├── CMakeLists.txt  # Toolchain CMake configuration
-│       └── build.bat       # Toolchain related build command
-├── src                     # Source files (alternatively `lib` or `app`)
-│   ├── asw                 # Application software
-│   ├── bsw                 # Basic software
-│   │   ├── os              # Operating system (such as FreeRTOS)
-│   │   │   └── freertos    # FreeRTOS operating system
-│   │   ├── mcu             # MCU api interface
-│   │   └── drv             # Driver operations that required multiple MCU api combination
-│   └── main.c, .h          # Main entrance
-├── test                    # Automated tests (alternatively `spec` or `tests`)
-├── script                  # Project assistance scripts
-├── tools                   # Tools and utilities
-├── CMakeLists.txt          # CMake build configuration
-├── build.bat               # Batch command that invokes CMake
-├── LICENSE                 # See https://choosealicense.com/
+├── .git                                # git repository
+├── .gitignore                          # git ignored files configuration
+├── .clang-format                       # C language formatter cofiguration
+├── build                               # Compiled files (alternatively `dist`)
+├── docs                                # Documentation files (alternatively `doc`)
+├── platform                            # Hardware related
+│   └── xxx_mcu                         # MCU hardware
+│       ├── script                      # Device assistance scripts
+│       ├── src                         # MCU hardware related source
+│       ├── toolchain_for_cmake.cmake   # Toolchain CMake configuration
+│       └── build_cmake.bat             # Toolchain related build command
+├── src                                 # Source files (alternatively `lib` or `app`)
+│   ├── asw                             # Application software
+│   ├── bsw                             # Basic software
+│   │   ├── os                          # Operating system (such as FreeRTOS)
+│   │   │   └── freertos                # FreeRTOS operating system
+│   │   ├── mcu                         # MCU api interface
+│   │   └── drv                         # Driver operations that required multiple MCU api combination
+│   └── main.c, .h                      # Main entrance
+├── test                                # Automated tests (alternatively `spec` or `tests`)
+├── script                              # Project assistance scripts
+├── tools                               # Tools and utilities
+├── CMakeLists.txt                      # CMake build configuration
+├── build.bat                           # Batch command that invokes CMake
+├── LICENSE                             # See https://choosealicense.com/
 └── README.md
 ```
 
