@@ -22,13 +22,13 @@ option(TREAT_WARNINGS_AS_ERRORS "Treat warnings as errors" ON)
 ################################################################################
 # Toolchain
 ################################################################################
-include(${CMAKE_CURRENT_LIST_DIR}/platform/ti_c2000_tms320f280039c/toolchain.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/platform/ti_c2000_tms320f280039c/toolchain_for_cmake.cmake)
 
 ################################################################################
 # Project settings
 ################################################################################
-# Set project
-set(PROJECT_NAME "minimal_f280039")
+# Set project, PROJECT_NAME is set in the build_cmake.bat
+# set(PROJECT_NAME "ti_c2000")
 project(${PROJECT_NAME} C ASM)
 
 #-------------------------------------------------------------------------------
