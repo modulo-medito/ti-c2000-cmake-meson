@@ -11,7 +11,7 @@ set maketool=%ccs_dir%\utils\bin\gmake
 set hextool=%ccs_dir%\tools\compiler\ti-cgt-c2000_22.6.1.LTS\bin\hex2000.exe
 
 @REM Set the project configurations
-set prjname=minimal_f280039
+set prjname=ti_c2000
 set buildpath=build\cmake
 set logfile=build.log
 
@@ -49,7 +49,25 @@ echo.
 echo ################################################################################
 echo # Post-build steps                                                             #
 echo ################################################################################
-%hextool% --diag_wrap=off ../../platform/ti_c2000_tms320f280039c/script/rom_directive/minimal_f280039.hexcmd 2>> %logfile%
+REM Set ROM directive command file name
+set rom_directive_file=ti_c2000_hex_gen.dat
+
+REM Make ROM directive command file
+echo %prjname%.out                        > %rom_directive_file%
+echo --memwidth=16                       >> %rom_directive_file%
+echo -i                                  >> %rom_directive_file%
+echo --image                             >> %rom_directive_file%
+echo ROMS                                >> %rom_directive_file%
+echo {                                   >> %rom_directive_file%
+echo     APPROM: org = 0x00080000,       >> %rom_directive_file%
+echo             len = 0x00030000,       >> %rom_directive_file%
+echo             romwidth = 16,          >> %rom_directive_file%
+echo             fill = 0xffffffff,      >> %rom_directive_file%
+echo             files = {%prjname%.hex} >> %rom_directive_file%
+echo }                                   >> %rom_directive_file%
+
+REM TI hex generation
+%hextool% --diag_wrap=off %rom_directive_file% 2>> %logfile%
 
 echo.
 echo.
