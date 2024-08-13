@@ -74,9 +74,9 @@ Summary table showed below:
 | local macro       | UPPER_CASE                                | `MACRO_A`                                  |
 | local struct      | CamelCase                                 | `SomeStruct`                               |
 | local enum        | FileNameCamelCase                         | `SomeEnum`                                 |
-| local enum value  | FileNameCamelCase                         | `SomeEnumVal1`                             |
-| local variable    | _s_snake_case                             | `_s_static_var`                            |
-| local function    | _function_name                            | `_do_something()`                          |
+| local enum value  | FileNameCamelCase                         | `SomeEnum_ValOne`                          |
+| local variable    | s_snake_case                              | `s_static_var`                             |
+| local function    | fn_function_name                          | `fn_do_something()`                        |
 | temp variable     | snake_case                                | `some_var`                                 |
 | param in          | snake_case                                | `some_var`                                 |
 | param out         | o_snake_case                              | `o_some_var`                               |
