@@ -22,10 +22,10 @@
 /******************************************************************************/
 /* DEFINE                                                                     */
 /******************************************************************************/
-#define drv_mcu_DELAY_US(val) mcu_ctl_DELAY_US(val)
-#define drv_mcu_FEED_WATCHDOG() mcu_ctl_FEED_WATCHDOG()
-#define drv_mcu_ENABLE_GLOBAL_INTERRUPT() mcu_ctl_INTERRUPT_ENABLE()
-#define drv_mcu_INTERRUPT_DISABLE() mcu_ctl_INTERRUPT_DISABLE()
+#define drv_mcu_DELAY_US(val)                  mcu_ctl_DELAY_US(val)
+#define drv_mcu_FEED_WATCHDOG()                mcu_ctl_FEED_WATCHDOG()
+#define drv_mcu_ENABLE_GLOBAL_INTERRUPT()      mcu_ctl_INTERRUPT_ENABLE()
+#define drv_mcu_INTERRUPT_DISABLE()            mcu_ctl_INTERRUPT_DISABLE()
 #define drv_mcu_ENABLE_DEBUG_EVENT_INTERRUPT() mcu_ctl_DEBUG_EVENT_ENABLE()
 
 /******************************************************************************/
