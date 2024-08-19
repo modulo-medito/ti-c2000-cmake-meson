@@ -41,8 +41,8 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-extern void os_freertos__init();
-extern void os_freertos__main();
+extern void os_freertos_init();
+extern void os_freertos_main();
 
 /******************************************************************************/
 /* GLOBAL INLINE FUNCTION DEFINITION                                          */

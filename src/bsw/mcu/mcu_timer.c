@@ -47,7 +47,7 @@
 /******************************************************************************/
 /* LOCAL VARIABLE DEFINITION                                                  */
 /******************************************************************************/
-static void _config_cputimer_period_us(u32 timer, u32 period_us);
+static void s_config_cputimer_period_us(u32 timer, u32 period_us);
 
 /******************************************************************************/
 /* GLOBAL VARIABLE DEFINITION                                                 */
@@ -56,12 +56,12 @@ static void _config_cputimer_period_us(u32 timer, u32 period_us);
 /******************************************************************************/
 /* GLOBAL FUNCTION DEFINITION                                                 */
 /******************************************************************************/
-void mcu_timer__init_timer_with_period_us(u32 timer, u32 period_us) {
+void mcu_timer_init_timer_with_period_us(u32 timer, u32 period_us) {
     CPUTimer_setPeriod(timer, 0xffffffff);
     CPUTimer_setPreScaler(timer, 0);
     CPUTimer_stopTimer(timer);
     CPUTimer_reloadTimerCounter(timer);
-    _config_cputimer_period_us(timer, period_us);
+    s_config_cputimer_period_us(timer, period_us);
 }
 
 /******************************************************************************/
@@ -73,7 +73,7 @@ void mcu_timer__init_timer_with_period_us(u32 timer, u32 period_us) {
  * period in uSeconds. The timer is held in the stopped state after
  * configuration
  */
-static void _config_cputimer_period_us(u32 timer, u32 period_us) {
+static void s_config_cputimer_period_us(u32 timer, u32 period_us) {
     u32 temp;
     u32 freq = DEVICE_SYSCLK_FREQ;
 

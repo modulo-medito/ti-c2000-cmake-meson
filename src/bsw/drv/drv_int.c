@@ -39,8 +39,8 @@
 /******************************************************************************/
 /* LOCAL FUNCTION DECLARATION                                                 */
 /******************************************************************************/
-interrupt void _isr_timer1();
-interrupt void _isr_timer2();
+interrupt void s_isr_timer1();
+interrupt void s_isr_timer2();
 
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
@@ -49,8 +49,8 @@ interrupt void _isr_timer2();
 /******************************************************************************/
 /* LOCAL VARIABLE DEFINITION                                                  */
 /******************************************************************************/
-static void (*_s_isr_timer1_job)(void) = NULL;
-static void (*_s_isr_timer2_job)(void) = NULL;
+static void (*s_isr_timer1_job)(void) = NULL;
+static void (*s_isr_timer2_job)(void) = NULL;
 
 /******************************************************************************/
 /* GLOBAL VARIABLE DEFINITION                                                 */
@@ -59,36 +59,36 @@ static void (*_s_isr_timer2_job)(void) = NULL;
 /******************************************************************************/
 /* GLOBAL FUNCTION DEFINITION                                                 */
 /******************************************************************************/
-void drv_int__regist_isr_timer1(void (*isr)(void)) {
-    _s_isr_timer1_job = isr;
-    mcu_int__regist_isr(mcu_int__INT_CPU_TIMER1, &_isr_timer1);
+void drv_int_regist_isr_timer1(void (*isr)(void)) {
+    s_isr_timer1_job = isr;
+    mcu_int_regist_isr(mcu_int_INT_CPU_TIMER1, &s_isr_timer1);
 }
 
-void drv_int__enable_isr_timer1() {
-    mcu_int__enable_isr(mcu_int__INT_CPU_TIMER1);
+void drv_int_enable_isr_timer1() {
+    mcu_int_ENABLE_ISR(mcu_int_INT_CPU_TIMER1);
 }
 
-void drv_int__regist_isr_timer2(void (*isr)(void)) {
-    _s_isr_timer2_job = isr;
-    mcu_int__regist_isr(mcu_int__INT_CPU_TIMER2, &_isr_timer2);
+void drv_int_regist_isr_timer2(void (*isr)(void)) {
+    s_isr_timer2_job = isr;
+    mcu_int_regist_isr(mcu_int_INT_CPU_TIMER2, &s_isr_timer2);
 }
 
-void drv_int__enable_isr_timer2() {
-    mcu_int__enable_isr(mcu_int__INT_CPU_TIMER2);
+void drv_int_enable_isr_timer2() {
+    mcu_int_ENABLE_ISR(mcu_int_INT_CPU_TIMER2);
 }
 
 /******************************************************************************/
 /* LOCAL FUNCTION DEFINITION                                                  */
 /******************************************************************************/
-interrupt void _isr_timer1() {
-    if (_s_isr_timer1_job != NULL) {
-        _s_isr_timer1_job();
+interrupt void s_isr_timer1() {
+    if (s_isr_timer1_job != NULL) {
+        s_isr_timer1_job();
     }
 }
 
-interrupt void _isr_timer2() {
-    if (_s_isr_timer2_job != NULL) {
-        _s_isr_timer2_job();
+interrupt void s_isr_timer2() {
+    if (s_isr_timer2_job != NULL) {
+        s_isr_timer2_job();
     }
 }
 

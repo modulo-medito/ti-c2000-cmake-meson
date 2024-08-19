@@ -41,9 +41,9 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-extern void drv_timer__init();
-extern void drv_timer__setup_cpu_timer1(void (*isr)(void), u32 period_us);
-extern void drv_timer__setup_cpu_timer2(void (*isr)(void), u32 period_us);
+extern void drv_timer_init();
+extern void drv_timer_setup_cpu_timer1(void (*isr)(void), u32 period_us);
+extern void drv_timer_setup_cpu_timer2(void (*isr)(void), u32 period_us);
 
 /******************************************************************************/
 /* GLOBAL INLINE FUNCTION DEFINITION                                          */

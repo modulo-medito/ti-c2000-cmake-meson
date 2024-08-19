@@ -21,20 +21,20 @@
 /******************************************************************************/
 /* DEFINE                                                                     */
 /******************************************************************************/
-#define mcu_int__INT_CPU_TIMER1 (INT_TIMER1)
-#define mcu_int__INT_CPU_TIMER2 (INT_TIMER2)
+#define mcu_int_INT_CPU_TIMER1 (INT_TIMER1)
+#define mcu_int_INT_CPU_TIMER2 (INT_TIMER2)
 
-#define mcu_int__init_vector_table()                                           \
+#define mcu_int_INIT_VECTOR_TABLE()                                            \
     do {                                                                       \
         Interrupt_initVectorTable();                                           \
     } while (0)
 
-#define mcu_int__init_module()                                                 \
+#define mcu_int_INIT_MODULE()                                                  \
     do {                                                                       \
         Interrupt_initModule();                                                \
     } while (0)
 
-#define mcu_int__enable_isr(int_idx)                                           \
+#define mcu_int_ENABLE_ISR(int_idx)                                            \
     do {                                                                       \
         Interrupt_enable(int_idx);                                             \
     } while (0)
@@ -58,7 +58,7 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-extern void mcu_int__regist_isr(u32 interrupt_number, void (*handler)(void));
+extern void mcu_int_regist_isr(u32 interrupt_number, void (*handler)(void));
 
 /******************************************************************************/
 /* GLOBAL INLINE FUNCTION DEFINITION                                          */

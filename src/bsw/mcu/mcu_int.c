@@ -43,7 +43,7 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-void mcu_int__regist_isr(u32 interrupt_number, void (*handler)(void)) {
+void mcu_int_regist_isr(u32 interrupt_number, void (*handler)(void)) {
     Interrupt_register(interrupt_number, handler);
 }
 

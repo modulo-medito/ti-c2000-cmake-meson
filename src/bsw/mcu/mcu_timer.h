@@ -21,15 +21,15 @@
 /******************************************************************************/
 /* DEFINE                                                                     */
 /******************************************************************************/
-#define mcu_timer__cputimer1 (CPUTIMER1_BASE)
-#define mcu_timer__cputimer2 (CPUTIMER2_BASE)
+#define mcu_timer_CPUTIMER1 (CPUTIMER1_BASE)
+#define mcu_timer_CPUTIMER2 (CPUTIMER2_BASE)
 
-#define mcu_timer__enable_timer_interrupt(timer)                               \
+#define mcu_timer_ENABLE_TIMER_INTERRUPT(timer)                                \
     do {                                                                       \
         CPUTimer_enableInterrupt(timer);                                       \
     } while (0)
 
-#define mcu_timer_start_timer(timer)                                           \
+#define mcu_timer_START_TIMER(timer)                                           \
     do {                                                                       \
         CPUTimer_startTimer(timer);                                            \
     } while (0)
@@ -53,7 +53,7 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-extern void mcu_timer__init_timer_with_period_us(u32 timer, u32 period_us);
+extern void mcu_timer_init_timer_with_period_us(u32 timer, u32 period_us);
 
 /******************************************************************************/
 /* GLOBAL INLINE FUNCTION DEFINITION                                          */

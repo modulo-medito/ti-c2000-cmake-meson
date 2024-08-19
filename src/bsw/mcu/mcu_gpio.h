@@ -21,26 +21,26 @@
 /******************************************************************************/
 /* DEFINE                                                                     */
 /******************************************************************************/
-#define mcu_gpio__PIN_LED1 (DEVICE_GPIO_PIN_LED1)
-#define mcu_gpio__PIN_LED2 (DEVICE_GPIO_PIN_LED2)
+#define mcu_gpio_PIN_LED1 (DEVICE_GPIO_PIN_LED1)
+#define mcu_gpio_PIN_LED2 (DEVICE_GPIO_PIN_LED2)
 
-#define mcu_gpio__write_pin(pin, val)                                          \
+#define mcu_gpio_WRITE_PIN(pin, val)                                           \
     do {                                                                       \
         GPIO_writePin(pin, val);                                               \
     } while (0)
 
-#define mcu_gpio__set_pin_dir_out(pin)                                         \
+#define mcu_gpio_SET_PIN_DIR_OUT(pin)                                          \
     do {                                                                       \
         GPIO_setDirectionMode(pin, GPIO_DIR_MODE_OUT);                         \
     } while (0)
 
-#define mcu_gpio__set_pin_dir_in(pin)                                          \
+#define mcu_gpio_SET_PIN_DIR_IN(pin)                                           \
     do {                                                                       \
         GPIO_setDirectionMode(pin, GPIO_DIR_MODE_IN);                          \
     } while (0)
 
 /** Push-pull output or floating input */
-#define mcu_gpio__set_pin_type_std(pin)                                        \
+#define mcu_gpio_SET_PIN_TYPE_STD(pin)                                         \
     do {                                                                       \
         GPIO_setPadConfig(pin, GPIO_PIN_TYPE_STD);                             \
     } while (0)

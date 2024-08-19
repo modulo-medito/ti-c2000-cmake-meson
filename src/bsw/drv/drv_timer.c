@@ -56,23 +56,23 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DEFINITION                                                 */
 /******************************************************************************/
-void drv_timer__init() {
+void drv_timer_init() {
 }
 
-void drv_timer__setup_cpu_timer1(void (*isr)(void), u32 period_us) {
-    drv_int__regist_isr_timer1(isr);
-    mcu_timer__init_timer_with_period_us(mcu_timer__cputimer1, period_us);
-    mcu_timer__enable_timer_interrupt(mcu_timer__cputimer1);
-    drv_int__enable_isr_timer1();
-    mcu_timer_start_timer(mcu_timer__cputimer1);
+void drv_timer_setup_cpu_timer1(void (*isr)(void), u32 period_us) {
+    drv_int_regist_isr_timer1(isr);
+    mcu_timer_init_timer_with_period_us(mcu_timer_CPUTIMER1, period_us);
+    mcu_timer_ENABLE_TIMER_INTERRUPT(mcu_timer_CPUTIMER1);
+    drv_int_enable_isr_timer1();
+    mcu_timer_START_TIMER(mcu_timer_CPUTIMER1);
 }
 
-void drv_timer__setup_cpu_timer2(void (*isr)(void), u32 period_us) {
-    drv_int__regist_isr_timer2(isr);
-    mcu_timer__init_timer_with_period_us(mcu_timer__cputimer2, period_us);
-    mcu_timer__enable_timer_interrupt(mcu_timer__cputimer2);
-    drv_int__enable_isr_timer2();
-    mcu_timer_start_timer(mcu_timer__cputimer2);
+void drv_timer_setup_cpu_timer2(void (*isr)(void), u32 period_us) {
+    drv_int_regist_isr_timer2(isr);
+    mcu_timer_init_timer_with_period_us(mcu_timer_CPUTIMER2, period_us);
+    mcu_timer_ENABLE_TIMER_INTERRUPT(mcu_timer_CPUTIMER2);
+    drv_int_enable_isr_timer2();
+    mcu_timer_START_TIMER(mcu_timer_CPUTIMER2);
 }
 
 /******************************************************************************/

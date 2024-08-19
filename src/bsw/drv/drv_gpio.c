@@ -55,23 +55,23 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DEFINITION                                                 */
 /******************************************************************************/
-void drv_gpio__init() {
-    mcu_gpio__set_pin_type_std(drv_gpio__PIN_LED1);
-    mcu_gpio__set_pin_type_std(drv_gpio__PIN_LED2);
+void drv_gpio_init() {
+    mcu_gpio_SET_PIN_TYPE_STD(drv_gpio_PIN_LED1);
+    mcu_gpio_SET_PIN_TYPE_STD(drv_gpio_PIN_LED2);
 
-    mcu_gpio__set_pin_dir_out(drv_gpio__PIN_LED1);
-    mcu_gpio__set_pin_dir_out(drv_gpio__PIN_LED2);
+    mcu_gpio_SET_PIN_DIR_OUT(drv_gpio_PIN_LED1);
+    mcu_gpio_SET_PIN_DIR_OUT(drv_gpio_PIN_LED2);
 
-    mcu_gpio__write_pin(drv_gpio__PIN_LED1, 1);
-    mcu_gpio__write_pin(drv_gpio__PIN_LED2, 1);
+    mcu_gpio_WRITE_PIN(drv_gpio_PIN_LED1, 1);
+    mcu_gpio_WRITE_PIN(drv_gpio_PIN_LED2, 1);
 }
 
-void drv_gpio__turn_on_led(u8 gpio_num) {
-    mcu_gpio__write_pin(gpio_num, 0);
+void drv_gpio_turn_on_led(u8 gpio_num) {
+    mcu_gpio_WRITE_PIN(gpio_num, 0);
 }
 
-void drv_gpio__turn_off_led(u8 gpio_num) {
-    mcu_gpio__write_pin(gpio_num, 1);
+void drv_gpio_turn_off_led(u8 gpio_num) {
+    mcu_gpio_WRITE_PIN(gpio_num, 1);
 }
 
 /******************************************************************************/

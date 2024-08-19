@@ -22,8 +22,8 @@
 /******************************************************************************/
 /* DEFINE                                                                     */
 /******************************************************************************/
-#define drv_gpio__PIN_LED1 (mcu_gpio__PIN_LED1)
-#define drv_gpio__PIN_LED2 (mcu_gpio__PIN_LED2)
+#define drv_gpio_PIN_LED1 (mcu_gpio_PIN_LED1)
+#define drv_gpio_PIN_LED2 (mcu_gpio_PIN_LED2)
 
 /******************************************************************************/
 /* ENUM                                                                       */
@@ -44,9 +44,9 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-extern void drv_gpio__init();
-extern void drv_gpio__turn_on_led(u8 gpio_num);
-extern void drv_gpio__turn_off_led(u8 gpio_num);
+extern void drv_gpio_init();
+extern void drv_gpio_turn_on_led(u8 gpio_num);
+extern void drv_gpio_turn_off_led(u8 gpio_num);
 
 /******************************************************************************/
 /* GLOBAL INLINE FUNCTION DEFINITION                                          */

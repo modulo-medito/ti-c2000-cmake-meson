@@ -55,32 +55,32 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DEFINITION                                                 */
 /******************************************************************************/
-void drv_mcu__init() {
+void drv_mcu_init() {
     /** Initialize device clock and peripherals */
     Device_init();
 
     /** Initialize PIE and clear PIE registers. Disables CPU interrupts. */
-    mcu_int__init_module();
+    mcu_int_INIT_MODULE();
 
     /** Initialize GPIO and unlock the GPIO configuration registers */
     Device_initGPIO();
 
     /** Disable CPU interrupts */
-    mcu_ctl__interrupt_disable();
+    mcu_ctl_INTERRUPT_DISABLE();
 
     /** Disable CPU interrupts and clear all CPU interrupt flags */
-    drv_mcu__clear_all_interrupt_flags();
+    drv_mcu_clear_all_interrupt_flags();
 
     /**
      * Initialize the PIE vector table with pointers to the shell Interrupt
      * Service Routines (ISR).
      */
-    mcu_int__init_vector_table();
+    mcu_int_INIT_VECTOR_TABLE();
 }
 
-void drv_mcu__clear_all_interrupt_flags() {
-    mcu_ctl__clear_interrupt_enable_flags();
-    mcu_ctl__clear_interrupt_indication_flags();
+void drv_mcu_clear_all_interrupt_flags() {
+    mcu_ctl_CLEAR_INTERRUPT_ENABLE_FLAGS();
+    mcu_ctl_CLEAR_INTERRUPT_INDICATION_FLAGS();
 }
 
 /******************************************************************************/

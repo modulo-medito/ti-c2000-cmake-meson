@@ -42,10 +42,10 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-extern void drv_int__regist_isr_timer1(void (*isr)(void));
-extern void drv_int__enable_isr_timer1();
-extern void drv_int__regist_isr_timer2(void (*isr)(void));
-extern void drv_int__enable_isr_timer2();
+extern void drv_int_regist_isr_timer1(void (*isr)(void));
+extern void drv_int_enable_isr_timer1();
+extern void drv_int_regist_isr_timer2(void (*isr)(void));
+extern void drv_int_enable_isr_timer2();
 
 /******************************************************************************/
 /* GLOBAL INLINE FUNCTION DEFINITION                                          */

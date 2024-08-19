@@ -21,37 +21,37 @@
 /******************************************************************************/
 /* DEFINE                                                                     */
 /******************************************************************************/
-#define mcu_ctl__clear_interrupt_indication_flags()                            \
+#define mcu_ctl_CLEAR_INTERRUPT_INDICATION_FLAGS()                             \
     do {                                                                       \
         IFR = 0x0000;                                                          \
     } while (0)
 
-#define mcu_ctl__clear_interrupt_enable_flags()                                \
+#define mcu_ctl_CLEAR_INTERRUPT_ENABLE_FLAGS()                                 \
     do {                                                                       \
         IER = 0x0000;                                                          \
     } while (0)
 
-#define mcu_ctl__interrupt_disable()                                           \
+#define mcu_ctl_INTERRUPT_DISABLE()                                            \
     do {                                                                       \
         DINT;                                                                  \
     } while (0)
 
-#define mcu_ctl__interrupt_enable()                                            \
+#define mcu_ctl_INTERRUPT_ENABLE()                                             \
     do {                                                                       \
         EINT;                                                                  \
     } while (0)
 
-#define mcu_ctl__debug_event_enable()                                          \
+#define mcu_ctl_DEBUG_EVENT_ENABLE()                                           \
     do {                                                                       \
         ERTM;                                                                  \
     } while (0)
 
-#define mcu_ctl__delay_us(val)                                                 \
+#define mcu_ctl_DELAY_US(val)                                                  \
     do {                                                                       \
         DEVICE_DELAY_US(val);                                                  \
     } while (0)
 
-#define mcu_ctl__feed_watchdog()                                               \
+#define mcu_ctl_FEED_WATCHDOG()                                                \
     do {                                                                       \
         SysCtl_serviceWatchdog();                                              \
     } while (0)

@@ -61,16 +61,16 @@
 /******************************************************************************/
 void main() {
     /** MCU init */
-    drv_mcu__init();
+    drv_mcu_init();
 
     /** User system init */
-    drv_sys__init();
+    drv_sys_init();
 
     /** Operating system init */
-    os__init();
+    os_init();
 
     /** Start OS task */
-    os__main();
+    os_main();
 }
 
 /******************************************************************************/

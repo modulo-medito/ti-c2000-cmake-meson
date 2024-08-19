@@ -22,11 +22,11 @@
 /******************************************************************************/
 /* DEFINE                                                                     */
 /******************************************************************************/
-#define drv_mcu__delay_us(val) mcu_ctl__delay_us(val)
-#define drv_mcu__feed_watchdog() mcu_ctl__feed_watchdog()
-#define drv_mcu_enable_global_interrupt() mcu_ctl__interrupt_enable()
-#define drv_mcu__interrupt_disable() mcu_ctl__interrupt_disable()
-#define drv_mcu_enable_debug_event_interrupt() mcu_ctl__debug_event_enable()
+#define drv_mcu_DELAY_US(val) mcu_ctl_DELAY_US(val)
+#define drv_mcu_FEED_WATCHDOG() mcu_ctl_FEED_WATCHDOG()
+#define drv_mcu_ENABLE_GLOBAL_INTERRUPT() mcu_ctl_INTERRUPT_ENABLE()
+#define drv_mcu_INTERRUPT_DISABLE() mcu_ctl_INTERRUPT_DISABLE()
+#define drv_mcu_ENABLE_DEBUG_EVENT_INTERRUPT() mcu_ctl_DEBUG_EVENT_ENABLE()
 
 /******************************************************************************/
 /* ENUM                                                                       */
@@ -47,8 +47,8 @@
 /******************************************************************************/
 /* GLOBAL FUNCTION DECLARATION                                                */
 /******************************************************************************/
-extern void drv_mcu__init();
-extern void drv_mcu__clear_all_interrupt_flags();
+extern void drv_mcu_init();
+extern void drv_mcu_clear_all_interrupt_flags();
 
 /******************************************************************************/
 /* GLOBAL INLINE FUNCTION DEFINITION                                          */
