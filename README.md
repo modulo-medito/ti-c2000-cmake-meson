@@ -55,7 +55,7 @@ Consider a source file as a module.
 Becase C language does not have the namespace.
 
 So objects with pubic visibility should have a file name prefix like
-`file_name__`.
+`file_name_`.
 While objects with private visibility should have a `_` prefix to indicate the
 operation scope.
 
@@ -64,22 +64,21 @@ Summary table showed below:
 | Object            | Convention                                | Example                                    |
 | -                 | -                                         | -                                          |
 | file              | snake_case                                | `demo_file.c`, `demo_file.h`               |
-| global macro      | file_name__UPPER_CASE                     | `demo_file__MACRO_A`                       |
-| global macro func | file_name__snake_case, used like function | `demo_file__macro_a`                       |
-| global struct     | file_name__CamelCase                      | `demo_file__StructOne`                     |
-| global enum       | file_name__CamelCase                      | `demo_file__EnumerateOne`                  |
-| global enum value | file_name__CamelCase                      | `demo_file__EnumerateOneValue1`            |
-| global variable   | file_name__g_snake_case                   | `demo_file__g_global_var`                  |
-| global function   | file_name__function_name                  | `demo_file__do_something()`                |
+| global macro      | file_name_UPPER_CASE                      | `demo_file_MACRO_A`                        |
+| global struct     | file_name_PascalCase                      | `demo_file_StructOne`                      |
+| global enum       | file_name_PascalCase                      | `demo_file_EnumerateOne`                   |
+| global enum value | file_name_PascalCase                      | `demo_file_EnumerateOne_Value1`            |
+| global variable   | file_name_snake_case                      | `demo_file_global_var`                     |
+| global function   | file_name_function_name                   | `demo_file_do_something()`                 |
 | local macro       | UPPER_CASE                                | `MACRO_A`                                  |
-| local struct      | CamelCase                                 | `SomeStruct`                               |
-| local enum        | FileNameCamelCase                         | `SomeEnum`                                 |
-| local enum value  | FileNameCamelCase                         | `SomeEnum_ValOne`                          |
+| local struct      | PascalCase                                | `SomeStruct`                               |
+| local enum        | PascalCase                                | `SomeEnum`                                 |
+| local enum value  | PascalCase                                | `SomeEnum_ValOne`                          |
 | local variable    | s_snake_case                              | `s_static_var`                             |
-| local function    | fn_function_name                          | `fn_do_something()`                        |
-| temp variable     | snake_case                                | `some_var`                                 |
-| param in          | snake_case                                | `some_var`                                 |
-| param out         | o_snake_case                              | `o_some_var`                               |
-| param in and out  | io_snake_case                             | `io_some_var`                              |
+| local function    | s_snake_case                              | `s_do_something()`                         |
+| temp variable     | snake_case                                | `temp_var`                                 |
+| param in          | snake_case                                | `param`                                    |
+| param out         | o_snake_case                              | `o_param`                                  |
+| param in and out  | io_snake_case                             | `io_param`                                 |
 | hex               | lower case                                | `0xab`                                     |
 | comment           | First character upper case, javadoc style | `/** Comment */`, `/**< Inline comment */` |
