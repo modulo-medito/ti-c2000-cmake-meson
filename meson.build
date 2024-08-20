@@ -12,6 +12,13 @@ project('ti_c2000', 'c',
     ],
   meson_version : '>=1.5.0')
 
+# Toolchain paths
+ti_css_path = 'C:/ti/ccs1260/ccs'
+
+ti_cpl_path = ti_css_path + '/tools/compiler/ti-cgt-c2000_22.6.1.LTS'
+ti_lib_path = ti_cpl_path + '/lib'
+ti_inc_path = ti_cpl_path + '/include'
+
 # Global variables tracking sources and includes
 c_args = []
 c_link_args = []
@@ -22,13 +29,6 @@ project_src = []
 project_inc = []
 c_files = []
 asm_files = []
-
-# find external programs from path (OS independant)
-# size = find_program('C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/size.exe')
-# as = find_program('C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/cl2000.exe')
-# objcopy = find_program('C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/ofd2000.exe')
-# objdump = find_program('C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/hex2000.exe')
-# ld = find_program('C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/cl2000.exe')
 
 # C files recursivly search
 found_src = run_command('./script/search_c.bat', check: false, env: 'P1=./src')
@@ -47,6 +47,8 @@ project_src += asm_files
 message('meson.build: The ASM = ', asm_files)
 
 # Header files recursivly search
+project_inc += ti_inc_path
+project_inc += ti_lib_path
 project_inc += './platform/ti_c2000_tms320f280039c/src/device/'
 project_inc += './platform/ti_c2000_tms320f280039c/src/device/driverlib/'
 project_inc += './platform/ti_c2000_tms320f280039c/src/device/driverlib/inc/'
@@ -58,8 +60,6 @@ project_inc += './src/bsw/os/freertos/'
 project_inc += './src/bsw/os/freertos/kernel/include/'
 project_inc += './src/bsw/os/freertos/kernel/port/'
 project_inc += './src/bsw/typedef/'
-project_inc += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/'
-project_inc += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/'
 
 # Set compile flags
 c_args += '-v28' # processor: silicon_version
@@ -98,25 +98,12 @@ c_link_args += '--rom_model'
 c_link_args += '--define=_FLASH'
 c_link_args += '--define=_LAUNCHXL_F280039C'
 
-# Set libraries linking
-# c_link_args += '-llibc.a'
-# c_link_args += '-lrts2800_fpu32_eabi.lib'
-
 # Dependency libraries
-my_lib_path = 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib'
-# my_lib = meson.get_compiler('c').find_library('libc.a', dirs: [my_lib_path], static: true)
-# # my_lib += meson.get_compiler('c').find_library('rts2800_fpu32_eabi.lib', dirs: [my_lib_path])
-# link_deps = declare_dependency(link_with: my_lib, include_directories: project_inc)
 my_lib = []
-my_lib += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/rts2800_fpu32_eabi.lib'
-my_lib += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/libc.a'
+my_lib += ti_lib_path + '/rts2800_fpu32_eabi.lib'
+my_lib += ti_lib_path + '/libc.a'
 my_lib += meson.current_source_dir() + '/platform/ti_c2000_tms320f280039c/src/lsl/28003x_generic_flash_lnk.cmd'
-src_dir = meson.current_source_dir()
-message('Current src dir:' + src_dir)
-# link_deps = declare_dependency(link_args: ['C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/libc.a'], include_directories: project_inc)
 link_deps = declare_dependency(link_args: [my_lib], include_directories: project_inc)
-# link_deps = dependency()
-# link_deps += dependency('rts2800_fpu32_eabi.lib')
 
 # compile the main executable
 main = executable('ti_c2000',
