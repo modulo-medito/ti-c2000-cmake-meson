@@ -1,4 +1,4 @@
-# Project Conventions
+# TI C2000 CMake Meson
 
 ## What is this project?
 It is a demo LED blinking project using the CMake build tool for learning.
@@ -57,7 +57,7 @@ See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Struc
 ├── tools                               # Tools and utilities
 ├── CMakeLists.txt                      # CMake build configuration
 ├── meson.build                         # Meson build configuration
-├── build.bat                           # Batch command that invokes CMake
+├── build.bat                           # Batch command that invokes CMake Meson
 ├── LICENSE                             # See https://choosealicense.com/
 └── README.md
 ```

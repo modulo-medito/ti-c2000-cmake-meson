@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 
 @REM Set the absolute directory of the toolchain tools
-set ccs_dir=C:\ti\ccs1260\ccs
+set ccs_dir=D:/user_chc/4_app/ccs/2_ws/ti/ccs1271/ccs
 set toolchain_sdk_dir=C:\ti\c2000\C2000Ware_4_02_00_00\device_support\f28003x
 
 @REM Set the relative path of the toolchain tools

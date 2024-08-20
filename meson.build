@@ -13,7 +13,7 @@ project('ti_c2000', 'c',
   meson_version : '>=1.5.0')
 
 # Toolchain paths
-ccs_path = 'C:/ti/ccs1260/ccs'
+ccs_path = 'D:/user_chc/4_app/ccs/2_ws/ti/ccs1271/ccs'
 
 ti_cpl_path = ccs_path + '/tools/compiler/ti-cgt-c2000_22.6.1.LTS'
 ti_lib_path = ti_cpl_path + '/lib'
