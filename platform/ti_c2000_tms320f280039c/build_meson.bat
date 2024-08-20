@@ -28,7 +28,8 @@ echo.
 echo ################################################################################
 echo # Build                                                                        #
 echo ################################################################################
-meson setup --cross-file .\platform\ti_c2000_tms320f280039c\toolchain_for_meson.ini %buildpath%
+set crossfile=.\platform\ti_c2000_tms320f280039c\toolchain_for_meson.ini
+meson setup --cross-file %crossfile% %buildpath%
 cd %buildpath%
 ninja 2> %logfile%
 cd ..

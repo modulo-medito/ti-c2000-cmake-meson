@@ -1,9 +1,11 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-@REM Set the toolchain
+@REM Choose the build tool
 REM set buildtool=cmake
 set buildtool=meson
+
+@REM Toolchain name
 set toolchain=ti_c2000_tms320f280039c
 
 @REM Build

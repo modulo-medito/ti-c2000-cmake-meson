@@ -5,8 +5,9 @@ It is a demo LED blinking project using the CMake build tool for learning.
 
 Key features listed below:
 1. Can be built with CMake
-2. Can be built with TI Code Composer Studio (CCS)
-3. With FreeRTOS operating system
+2. Can be built with Meson
+3. Can be built with TI Code Composer Studio (CCS)
+4. With FreeRTOS operating system
 
 ## How to build the project?
 
@@ -14,8 +15,16 @@ Key features listed below:
 Just import it as a CCS project and build the `Debug` option.
 
 ### Build with CMake
-1. Set the toolchain path of in the `\platform\<toolchain>\build_cmake.bat`
-2. Click `build.bat` in the project root folder
+1. Set the toolchain path `ccs_dir` in the `\platform\<toolchain>\build_cmake.bat`
+2. Uncomment the `set buildtool=cmake` in the `build.bat` file
+3. Click `build.bat` in the project root folder
+
+### Build with Meson
+1. Set the toolchain path `ccs_dir` in the `\platform\<toolchain>\build_meson.bat`
+2. Set the toolchain path `ccs_dir` in the `\platform\<toolchain>\toolchain_for_meson.ini`
+3. Set the toolchain path `ccs_dir` in the `meson.build`
+4. Uncomment the `set buildtool=meson` in the `build.bat` file
+5. Click `build.bat` in the project root folder
 
 ## Folder Structure
 See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Structure-Conventions)
@@ -32,7 +41,9 @@ See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Struc
 │       ├── script                      # Device assistance scripts
 │       ├── src                         # MCU hardware related source
 │       ├── toolchain_for_cmake.cmake   # Toolchain CMake configuration
-│       └── build_cmake.bat             # Toolchain related build command
+│       ├── toolchain_for_meson.ini     # Toolchain Meson configuration
+│       ├── build_cmake.bat             # Toolchain related build command
+│       └── build_meson.bat             # Toolchain related build command
 ├── src                                 # Source files (alternatively `lib` or `app`)
 │   ├── asw                             # Application software
 │   ├── bsw                             # Basic software
@@ -45,6 +56,7 @@ See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Struc
 ├── script                              # Project assistance scripts
 ├── tools                               # Tools and utilities
 ├── CMakeLists.txt                      # CMake build configuration
+├── meson.build                         # Meson build configuration
 ├── build.bat                           # Batch command that invokes CMake
 ├── LICENSE                             # See https://choosealicense.com/
 └── README.md
