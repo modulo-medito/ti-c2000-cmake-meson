@@ -15,11 +15,13 @@ project('ti_c2000', 'c',
 # Global variables tracking sources and includes
 c_args = []
 c_link_args = []
-project_src = []
-project_inc = []
 test_src = []
 test_inc = []
 link_deps = []
+project_src = []
+project_inc = []
+c_files = []
+asm_files = []
 
 # find external programs from path (OS independant)
 # size = find_program('C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/bin/size.exe')
@@ -30,63 +32,91 @@ link_deps = []
 
 # C files recursivly search
 found_src = run_command('./script/search_c.bat', check: false, env: 'P1=./src')
-project_src += found_src.stdout().strip().split('\n')
+c_files += found_src.stdout().strip().split('\n')
 found_src = run_command('./script/search_c.bat', check: false, env: 'P1=./platform/ti_c2000_tms320f280039c/src')
-project_src += found_src.stdout().strip().split('\n')
-message('meson.build: The C = ', project_src)
+c_files += found_src.stdout().strip().split('\n')
+project_src += c_files
+message('meson.build: The C = ', c_files)
 
 # ASM files recursivly search
 found_src = run_command('./script/search_asm.bat', check: false, env: 'P1=./src')
-project_src += found_src.stdout().strip().split('\n')
+asm_files += found_src.stdout().strip().split('\n')
 found_src = run_command('./script/search_asm.bat', check: false, env: 'P1=./platform/ti_c2000_tms320f280039c/src')
-project_src += found_src.stdout().strip().split('\n')
-message('meson.build: The ASM = ', project_src)
+asm_files += found_src.stdout().strip().split('\n')
+project_src += asm_files
+message('meson.build: The ASM = ', asm_files)
 
 # Header files recursivly search
 project_inc += './platform/ti_c2000_tms320f280039c/src/device/'
 project_inc += './platform/ti_c2000_tms320f280039c/src/device/driverlib/'
 project_inc += './platform/ti_c2000_tms320f280039c/src/device/driverlib/inc/'
 project_inc += './src/'
-project_inc += './src/bsw/os/'
 project_inc += './src/bsw/drv/'
 project_inc += './src/bsw/mcu/'
-project_inc += './src/bsw/typedef/'
+project_inc += './src/bsw/os/'
 project_inc += './src/bsw/os/freertos/'
-project_inc += './src/bsw/os/freertos/kernel/port/'
 project_inc += './src/bsw/os/freertos/kernel/include/'
+project_inc += './src/bsw/os/freertos/kernel/port/'
+project_inc += './src/bsw/typedef/'
+project_inc += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include/'
+project_inc += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/'
 
-# Set compile flags - processor options
-c_args += '-v28' # silicon_version
-c_args += '-ml' # large_memory_model
-c_args += '-mt' # unified_memory
+# Set compile flags
+c_args += '-v28' # processor: silicon_version
+c_args += '-ml' # processor: large_memory_model
+c_args += '-mt' # processor: unified_memory
 c_args += '--cla_support=cla2'
 c_args += '--float_support=fpu32'
 c_args += '--tmu_support=tmu0'
 c_args += '--vcu_support=vcrc'
-# Set compile flags - optimization
-c_args += '-O2' # opt_level
-c_args += '--opt_for_speed=2' # opt_for_speed
-c_args += '-Ooff' # opt_level
-c_args += '--fp_mode=relaxed' # floating point mode
-# Set compile flags - predefined symbols
-c_args += '--define=LARGE_MODEL'
-c_args += '--define=_FLASH'
-c_args += '--define=DEBUG'
-c_args += '--define=_LAUNCHXL_F280039C'
-# Set compile flags - advanced debug options
-c_args += '--symdebug:dwarf' # enable full symbolic DWARF debugging in out file
-# Set compile flags - performance advicer
-c_args += '--advice:performance=all' # show performance advice
-# Set compile flags - diagnostic options
-c_args += '-g' # treat diag id as warning
-c_args += '--diag_warning=225' # treat diag id as warning
-c_args += '--diag_wrap=off' # wrap diagnostic
-# set(TOOLCHAIN_C_FLAGS "${TOOLCHAIN_C_FLAGS} --emit_warnings_as_errors") # treat diagnostic warnings as errors
+# c_args += '-O2' # optimization: opt_level
+# c_args += '--opt_for_speed=2' # optimization: opt_for_speed
+c_args += '-Ooff' # optimization: opt_level
+c_args += '--fp_mode=relaxed' # optimization: floating point mode
+c_args += '--define=LARGE_MODEL' # predefined symbols
+c_args += '--define=_FLASH' # predefined symbols
+c_args += '--define=DEBUG' # predefined symbols
+c_args += '--define=_LAUNCHXL_F280039C' # predefined symbols
+c_args += '--symdebug:dwarf' # advanced debug options: enable full symbolic DWARF debugging in out file
+c_args += '--advice:performance=all' # performance advicer: show performance advice
+c_args += '-g' # diagnostic options
+c_args += '--diag_warning=225' # diagnostic options: treat diag id as warning
+c_args += '--diag_wrap=off' # diagnostic options: wrap diagnostic
+# c_args += '--emit_warnings_as_errors' # treat diagnostic warnings as errors
 c_args += '--display_error_number' # emit diag id numbers
 c_args += '--verbose_diagnostics' # show error location with file line and pos
-# Set compile flags - runtime model options
-c_args += '--gen_func_subsections=on' # place each function in a separate subsection
-c_args += '--abi=eabi' # application binary interface
+c_args += '--gen_func_subsections=on' # runtime model options: place each function in a separate subsection
+c_args += '--abi=eabi' # runtime model options: application binary interface
+
+# Set link flags - processor options
+c_link_args += '--stack_size=0x300'
+c_link_args += '--warn_sections'
+c_link_args += '--reread_libs'
+c_link_args += '--diag_wrap=off'
+c_link_args += '--display_error_number'
+c_link_args += '--rom_model'
+c_link_args += '--define=_FLASH'
+c_link_args += '--define=_LAUNCHXL_F280039C'
+
+# Set libraries linking
+# c_link_args += '-llibc.a'
+# c_link_args += '-lrts2800_fpu32_eabi.lib'
+
+# Dependency libraries
+my_lib_path = 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib'
+# my_lib = meson.get_compiler('c').find_library('libc.a', dirs: [my_lib_path], static: true)
+# # my_lib += meson.get_compiler('c').find_library('rts2800_fpu32_eabi.lib', dirs: [my_lib_path])
+# link_deps = declare_dependency(link_with: my_lib, include_directories: project_inc)
+my_lib = []
+my_lib += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/rts2800_fpu32_eabi.lib'
+my_lib += 'C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/libc.a'
+my_lib += meson.current_source_dir() + '/platform/ti_c2000_tms320f280039c/src/lsl/28003x_generic_flash_lnk.cmd'
+src_dir = meson.current_source_dir()
+message('Current src dir:' + src_dir)
+# link_deps = declare_dependency(link_args: ['C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib/libc.a'], include_directories: project_inc)
+link_deps = declare_dependency(link_args: [my_lib], include_directories: project_inc)
+# link_deps = dependency()
+# link_deps += dependency('rts2800_fpu32_eabi.lib')
 
 # compile the main executable
 main = executable('ti_c2000',

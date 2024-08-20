@@ -13,7 +13,7 @@ set hextool=%ccs_dir%\tools\compiler\ti-cgt-c2000_22.6.1.LTS\bin\hex2000.exe
 @REM Set the project configurations
 set prjname=ti_c2000
 set buildpath=build\meson
-set logfile=%buildpath%\build.log
+set logfile=build.log
 
 echo ################################################################################
 echo # Pre-build steps                                                              #
@@ -29,6 +29,10 @@ echo ###########################################################################
 echo # Build                                                                        #
 echo ################################################################################
 meson setup --cross-file .\platform\ti_c2000_tms320f280039c\toolchain_for_meson.ini %buildpath%
+cd %buildpath%
+ninja 2> %logfile%
+cd ..
+cd ..
 
 echo.
 echo.
@@ -37,7 +41,8 @@ echo ###########################################################################
 echo # Post-build steps                                                             #
 echo ################################################################################
 REM Set ROM directive command file name
-set rom_directive_file=%buildpath%\ti_c2000_hex_gen.dat
+cd %buildpath%
+set rom_directive_file=ti_c2000_hex_gen.dat
 
 REM Make ROM directive command file
 echo %prjname%.out                        > %rom_directive_file%
@@ -55,6 +60,8 @@ echo }                                   >> %rom_directive_file%
 
 REM TI hex generation
 %hextool% --diag_wrap=off %rom_directive_file% 2>> %logfile%
+cd ..
+cd ..
 
 echo.
 echo.
@@ -66,9 +73,9 @@ echo ###########################################################################
 REM powershell -Command "(Get-Content compile_commands.json) -replace '--include_path=', '-I' | Out-File -encoding utf8 compile_commands.json"
 
 @REM Show log in terminal
+cd %buildpath%
 type %logfile%
-
-@REM Back to the root
+cd ..
 cd ..
 
 endlocal
