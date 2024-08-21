@@ -1,7 +1,7 @@
 # TI C2000 CMake Meson
 
 ## Introduction
-It is a demo LED blinking project using the CMake build tool for learning.
+It is a demo LED blinking project using the CMake build tool for learning.<br>
 Demo project using Texas Instrument C2000 F280039C launch pad.
 
 Key features listed below:
