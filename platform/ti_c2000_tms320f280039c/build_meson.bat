@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 
 @REM Set the absolute directory of the toolchain tools
-set ccs_dir=D:\user_chc\4_app\ccs\2_ws\ti\ccs1271\ccs
+set ccs_dir=D:/user_chc/4_app/ccs/2_ws/ti/ccs1271/ccs
 set toolchain_sdk_dir=C:\ti\c2000\C2000Ware_4_02_00_00\device_support\f28003x
 
 @REM Set the relative path of the toolchain tools
@@ -22,13 +22,38 @@ echo ###########################################################################
 if exist %buildpath% rmdir /s /q %buildpath%
 mkdir %buildpath%
 
+@REM Generate crossfile for Meson
+set crossfile=%buildpath%\crossfile.ini
+echo [constants]                                                         > %crossfile%
+echo ccs_dir = '%ccs_dir%'                                              >> %crossfile%
+echo ti_cpl_path = ccs_dir + '/tools/compiler/ti-cgt-c2000_22.6.1.LTS'  >> %crossfile%
+echo ti_cplbin_path = ti_cpl_path + '/bin'                              >> %crossfile%
+echo [binaries]                                                         >> %crossfile%
+echo c = ti_cplbin_path + '/cl2000.exe'                                 >> %crossfile%
+echo c_ld = ti_cplbin_path + '/cl2000.exe'                              >> %crossfile%
+echo cpp = ti_cplbin_path + '/cl2000.exe'                               >> %crossfile%
+echo ar = ti_cplbin_path + '/ar2000.exe'                                >> %crossfile%
+echo strip = ti_cplbin_path + '/strip2000.exe'                          >> %crossfile%
+echo [host_machine]                                                     >> %crossfile%
+echo system = 'ti'                                                      >> %crossfile%
+echo cpu_family = 'c2000'                                               >> %crossfile%
+echo cpu = 'c2000'                                                      >> %crossfile%
+echo endian = 'little'                                                  >> %crossfile%
+echo [project_options]                                                  >> %crossfile%
+echo build-tests = false                                                >> %crossfile%
+
+@REM Deliver ccs_dir to meson.build
+set ccsdir_bat=%buildpath%\ccsdir.bat
+echo @echo off       > %ccsdir_bat%
+echo echo %ccs_dir% >> %ccsdir_bat%
+echo exit           >> %ccsdir_bat%
+
 echo.
 echo.
 echo.
 echo ################################################################################
 echo # Build                                                                        #
 echo ################################################################################
-set crossfile=.\platform\ti_c2000_tms320f280039c\toolchain_for_meson.ini
 meson setup --cross-file %crossfile% %buildpath%
 cd %buildpath%
 ninja 2> %logfile%

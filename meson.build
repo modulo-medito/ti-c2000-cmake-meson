@@ -13,9 +13,11 @@ project('ti_c2000', 'c',
   meson_version : '>=1.5.0')
 
 # Toolchain paths
-ccs_path = 'D:/user_chc/4_app/ccs/2_ws/ti/ccs1271/ccs'
+# ccs_dir = 'D:/user_chc/4_app/ccs/2_ws/ti/ccs1271/ccs'
+ccsdir = run_command('./build/meson/ccsdir.bat', check: false)
+ccs_dir = ccsdir.stdout().strip()
 
-ti_cpl_path = ccs_path + '/tools/compiler/ti-cgt-c2000_22.6.1.LTS'
+ti_cpl_path = ccs_dir + '/tools/compiler/ti-cgt-c2000_22.6.1.LTS'
 ti_lib_path = ti_cpl_path + '/lib'
 ti_inc_path = ti_cpl_path + '/include'
 
@@ -31,17 +33,17 @@ c_files = []
 asm_files = []
 
 # C files recursivly search
-found_src = run_command('./script/search_c.bat', check: false, env: 'P1=./src')
+found_src = run_command('./script/search/search_c.bat', check: false, env: 'P1=./src')
 c_files += found_src.stdout().strip().split('\n')
-found_src = run_command('./script/search_c.bat', check: false, env: 'P1=./platform/ti_c2000_tms320f280039c/src')
+found_src = run_command('./script/search/search_c.bat', check: false, env: 'P1=./platform/ti_c2000_tms320f280039c/src')
 c_files += found_src.stdout().strip().split('\n')
 project_src += c_files
 message('meson.build: The C = ', c_files)
 
 # ASM files recursivly search
-found_src = run_command('./script/search_asm.bat', check: false, env: 'P1=./src')
+found_src = run_command('./script/search/search_asm.bat', check: false, env: 'P1=./src')
 asm_files += found_src.stdout().strip().split('\n')
-found_src = run_command('./script/search_asm.bat', check: false, env: 'P1=./platform/ti_c2000_tms320f280039c/src')
+found_src = run_command('./script/search/search_asm.bat', check: false, env: 'P1=./platform/ti_c2000_tms320f280039c/src')
 asm_files += found_src.stdout().strip().split('\n')
 project_src += asm_files
 message('meson.build: The ASM = ', asm_files)

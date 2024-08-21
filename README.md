@@ -1,30 +1,34 @@
 # TI C2000 CMake Meson
 
-## What is this project?
+## Introduction
 It is a demo LED blinking project using the CMake build tool for learning.
+Demo project using Texas Instrument C2000 F280039C launch pad.
 
 Key features listed below:
 1. Can be built with CMake
 2. Can be built with Meson
 3. Can be built with TI Code Composer Studio (CCS)
-4. With FreeRTOS operating system
+4. With FreeRTOS realtime operating system
 
 ## How to build the project?
+### Prerequisites
+- [TI Code Composer Studio (CCS)](https://www.ti.com/tool/CCSTUDIO)
+- [CMake](https://cmake.org/download/)
+- [Meson](https://github.com/mesonbuild/meson/releases)
+- [Ninja](https://github.com/ninja-build/ninja/releases)
 
 ### Build with CCS
 Just import it as a CCS project and build the `Debug` option.
 
 ### Build with CMake
-1. Set the toolchain path `ccs_dir` in the `\platform\<toolchain>\build_cmake.bat`
+1. Set your toolchain path `ccs_dir` in the `\platform\<toolchain>\build_cmake.bat`
 2. Uncomment the `set buildtool=cmake` in the `build.bat` file
 3. Click `build.bat` in the project root folder
 
 ### Build with Meson
-1. Set the toolchain path `ccs_dir` in the `\platform\<toolchain>\build_meson.bat`
-2. Set the toolchain path `ccs_dir` in the `\platform\<toolchain>\toolchain_for_meson.ini`
-3. Set the toolchain path `ccs_dir` in the `meson.build`
-4. Uncomment the `set buildtool=meson` in the `build.bat` file
-5. Click `build.bat` in the project root folder
+1. Set your toolchain path `ccs_dir` in the `\platform\<toolchain>\build_meson.bat`
+2. Uncomment the `set buildtool=meson` in the `build.bat` file
+3. Click `build.bat` in the project root folder
 
 ## Folder Structure
 See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Structure-Conventions)
