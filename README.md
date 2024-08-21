@@ -39,13 +39,14 @@ See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Struc
 ├── .gitignore                          # git ignored files configuration
 ├── .clang-format                       # C language formatter cofiguration
 ├── build                               # Compiled files (alternatively `dist`)
+│   ├── cmake                           # CMake built files
+│   └── meson                           # Meson built files
 ├── docs                                # Documentation files (alternatively `doc`)
 ├── platform                            # Hardware related
 │   └── xxx_mcu                         # MCU hardware
 │       ├── script                      # Device assistance scripts
 │       ├── src                         # MCU hardware related source
 │       ├── toolchain_for_cmake.cmake   # Toolchain CMake configuration
-│       ├── toolchain_for_meson.ini     # Toolchain Meson configuration
 │       ├── build_cmake.bat             # Toolchain related build command
 │       └── build_meson.bat             # Toolchain related build command
 ├── src                                 # Source files (alternatively `lib` or `app`)
@@ -67,11 +68,11 @@ See also [Folder Structure Conventions](https://github.com/kriasoft/Folder-Struc
 ```
 
 ## C Language Naming Conventions
-Consider a source file as a module.
+Consider a source file as a module.<br>
 Becase C language does not have the namespace.
 
 So objects with pubic visibility should have a file name prefix like
-`file_name_`.
+`file_name_`.<br>
 While objects with private visibility should have a `_` prefix to indicate the
 operation scope.
 
