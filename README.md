@@ -1,14 +1,14 @@
 # TI C2000 CMake Meson
 
 ## Introduction
-It is a demo LED blinking project using the CMake build tool for learning.<br>
-Demo project using Texas Instrument C2000 F280039C launch pad.
+It is a demo LED blinking project using the CMake / Meson build tool for learning.<br>
+Run on the **Texas Instrument C2000 F280039C launch pad**.
 
 Key features listed below:
-1. Can be built with CMake
-2. Can be built with Meson
-3. Can be built with TI Code Composer Studio (CCS)
-4. With FreeRTOS realtime operating system
+1. With CMake build tool support
+2. With Meson build tool support
+3. With TI Code Composer Studio (CCS) build support
+4. Using FreeRTOS realtime operating system
 
 ## How to build the project?
 ### Prerequisites
@@ -78,24 +78,30 @@ operation scope.
 
 Summary table showed below:
 
-| Object            | Convention                                | Example                                    |
-| -                 | -                                         | -                                          |
-| file              | snake_case                                | `demo_file.c`, `demo_file.h`               |
-| global macro      | file_name_UPPER_CASE                      | `demo_file_MACRO_A`                        |
-| global struct     | file_name_PascalCase                      | `demo_file_StructOne`                      |
-| global enum       | file_name_PascalCase                      | `demo_file_EnumerateOne`                   |
-| global enum value | file_name_PascalCase                      | `demo_file_EnumerateOne_Value1`            |
-| global variable   | file_name_snake_case                      | `demo_file_global_var`                     |
-| global function   | file_name_function_name                   | `demo_file_do_something()`                 |
-| local macro       | UPPER_CASE                                | `MACRO_A`                                  |
-| local struct      | PascalCase                                | `SomeStruct`                               |
-| local enum        | PascalCase                                | `SomeEnum`                                 |
-| local enum value  | PascalCase                                | `SomeEnum_ValOne`                          |
-| local variable    | s_snake_case                              | `s_static_var`                             |
-| local function    | s_snake_case                              | `s_do_something()`                         |
-| temp variable     | snake_case                                | `temp_var`                                 |
-| param in          | snake_case                                | `param`                                    |
-| param out         | o_snake_case                              | `o_param`                                  |
-| param in and out  | io_snake_case                             | `io_param`                                 |
-| hex               | lower case                                | `0xab`                                     |
-| comment           | First character upper case, javadoc style | `/** Comment */`, `/**< Inline comment */` |
+| Object                  | Convention                                | Example                                                                                     |
+| -                       | -                                         | -                                                                                           |
+| file                    | snake_case                                | `demo_file.c`, `demo_file.h`                                                                |
+| global macro            | file_name_UPPER_CASE                      | `demo_file_MACRO_A`                                                                         |
+| global struct           | file_name_PascalCase                      | `demo_file_StructOne`                                                                       |
+| global enum             | file_name_PascalCase                      | `demo_file_EnumerateOne`                                                                    |
+| global enum value       | file_name_PascalCase                      | `demo_file_EnumerateOne_Value1`                                                             |
+| global variable         | file_name_snake_case                      | `demo_file_global_var`                                                                      |
+| global function         | file_name_function_name                   | `demo_file_do_something()`                                                                  |
+| local macro             | UPPER_CASE                                | `MACRO_A`                                                                                   |
+| local struct            | PascalCase                                | `SomeStruct`                                                                                |
+| local enum              | PascalCase                                | `SomeEnum`                                                                                  |
+| local enum value        | PascalCase_PascalCase                     | `SomeEnum_ValOne`                                                                           |
+| local variable          | s_snake_case                              | `s_static_var`                                                                              |
+| local function          | f_snake_case()                            | `f_do_something()`                                                                          |
+| interface input vars    | IF_I_UPPER_CASE                           | `IF_I_MACRO_A`                                                                              |
+| interface output vars   | IF_O_UPPER_CASE                           | `IF_O_MACRO_A`                                                                              |
+| interface in / out vars | IF_IO_UPPER_CASE                          | `IF_IO_MACRO_A`                                                                             |
+| interface function      | IF_F_UPPER_CASE                           | `IF_F_MACRO_A`                                                                              |
+| interface type          | IF_T_UPPER_CASE                           | `IF_T_MACRO_A`                                                                              |
+| temp variable           | snake_case                                | `temp_var`                                                                                  |
+| param in                | snake_case                                | `param`                                                                                     |
+| param out               | o_snake_case                              | `o_param`                                                                                   |
+| param in and out        | io_snake_case                             | `io_param`                                                                                  |
+| hex                     | lower case                                | `0xab`                                                                                      |
+| normal comment          | First character upper case                | `// Inine comment`<br><br>`// Line comment`<br><br>`//`<br>`// Block comment`<br>`//`       |
+| doxygen comment         | First character upper case, doxygen style | `///< Inine comment`<br><br>`/// Line comment`<br><br>`///`<br>`/// Block comment`<br>`///` |
